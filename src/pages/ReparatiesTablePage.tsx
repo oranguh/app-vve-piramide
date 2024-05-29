@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useTable, useFilters, useSortBy, usePagination, ColumnInstance } from 'react-table';
 import { Link } from 'react-router-dom';
-import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import './TablePage.css';
 
@@ -41,7 +40,7 @@ const ReparatiesTablePage: React.FC = () => {
         const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
         // Convert the JSON data into an array of objects
-        const headers = jsonData[0];
+        const headers: string[] = jsonData[0]  as string[];
         const rows = jsonData.slice(1).map((row: any) => {
           const rowData: any = {};
           headers.forEach((header: string, index: number) => {
@@ -137,13 +136,13 @@ const ReparatiesTablePage: React.FC = () => {
     useSortBy,
     usePagination
   );
-
+  console.log(headerGroups.headers);
   return (
     <div>
       <h1>Appartementen VvE de Piramide</h1>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
+          {headerGroups.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>

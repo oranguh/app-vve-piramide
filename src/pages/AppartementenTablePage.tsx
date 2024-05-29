@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useTable, useFilters, useSortBy, usePagination, ColumnInstance } from 'react-table';
 import { Link } from 'react-router-dom';
-import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 
 import './TablePage.css';
@@ -44,7 +43,7 @@ const AppartementenTablePage: React.FC = () => {
         // Convert the JSON data into an array of objects
         const headers = jsonData[0];
         const rows = jsonData.slice(1).map((row: any) => {
-          const rowData: any = {};
+          const rowData: {name: string} = {};
           headers.forEach((header: string, index: number) => {
             rowData[header] = row[index];
           });

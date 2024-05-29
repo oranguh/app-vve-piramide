@@ -2,9 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './LandingPage.css';
+
+
 const LandingPage: React.FC = () => {
   return (
-    <div>
+    <div id="LandingPage">
       <h1>Welcome to the Landing Page</h1>
       <nav>
         <ul>
